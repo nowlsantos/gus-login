@@ -1,6 +1,6 @@
 <div *ngIf="authService.user$ | async as user; else login">
     <div class="social-logout">
-        <h4>You can now administer this site.</h4>
+        <h4>Welcome {{ user.displayName }}.</h4>
         <h5>Don't forget to logout when closin this app.</h5>
         <button mat-raised-button color="primary" (click)="onLogout()">Sign Out</button>
         <div>
@@ -11,6 +11,7 @@
 </div>
 
 <ng-template #login>
+    
     <div class="social-login">
         <mat-card>
             <mat-card-title>Login</mat-card-title>
@@ -49,11 +50,18 @@
         
                 <button mat-raised-button 
                         color="primary"
-                        class="login-btn"
+                        class="login-email"
                         type="submit"
                         [disabled]="loginForm.invalid">Login
                 </button>
             </form>
         </mat-card>
+        
+        <button mat-raised-button 
+            class="login-google"
+            type="submit"
+            (click)="authService.googleSignIn()">Google Login
+        </button>
     </div>
+
 </ng-template>

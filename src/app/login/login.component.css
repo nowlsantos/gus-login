@@ -53,8 +53,18 @@ h4 h5 {
     width: 100%;
 }
 
-.login-btn {
+.login-email {
     display: block;
     width: 100%;
     margin-top: 16px;
+}
+
+.login-google {
+    display: block;
+    margin-top: 100px;
+    background-color: tomato;
+
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
