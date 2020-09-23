@@ -8,36 +8,37 @@ import { Car } from '../models/car.model';
 })
 export class CarService {
 
-	private tasksCollection: AngularFirestoreCollection<Car>;
-	private taskDoc: AngularFirestoreDocument<Car>;
-	private task: Observable<Car>;
+	private carsCollection: AngularFirestoreCollection<Car>;
+	private carDoc: AngularFirestoreDocument<Car>;
+	private car: Observable<Car>;
 
 	constructor(private db: AngularFirestore) { 
-		this.tasksCollection = this.db.collection<Car>('cars');
+		this.carsCollection = this.db.collection<Car>('cars');
 	}
 
 	getCars() {
-		return this.tasksCollection.valueChanges({ idField: 'id'});
+		return this.carsCollection.valueChanges({ idField: 'id'});
 	}
 
 	getCar(id: string) {
-        this.taskDoc = this.db.doc(`cars/${id}`);
-        this.task = this.taskDoc.valueChanges();
-        return this.task;
+        this.carDoc = this.db.doc(`cars/${id}`);
+        this.car = this.carDoc.valueChanges();
+        return this.car;
     }
 
 	//---CRUD operations---
-	addCar(task: Car) {
-		this.tasksCollection.add(task);
+	addCar(car: Car) {
+		this.carsCollection.add(car);
 	}
 
 	updateCar(car: Car) {
-		this.taskDoc = this.db.doc(`cars/${car.id}`);
-		this.taskDoc.update(car);
+		console.log('ID: ', car.id);
+		this.carDoc = this.db.doc(`cars/${car.id}`);
+		this.carDoc.update(car);
 	}
 
 	deleteCar(car: Car) {
-        this.taskDoc = this.db.doc(`cars/${car.id}`);
-        this.taskDoc.delete();
+        this.carDoc = this.db.doc(`cars/${car.id}`);
+        this.carDoc.delete();
     }
 }

@@ -1,28 +1,25 @@
-<div class="car-container"><mat-list role="list">
+<div class="car-container">
     <h1>List of Cars</h1>
     <mat-list *ngFor="let car of car$ | async">
         <div class="car">
-            Brand: {{ car.brand }}
+            {{ car.brand }}
             <span class="list-spacer"></span>
-            <mat-icon class="edit-icon" aria-hidden="false" aria-label="check icon" (click)="onEdit(car)">create</mat-icon>
-            <mat-icon class="delete-icon" aria-hidden="false" aria-label="check icon" (click)="onDelete(car)">delete</mat-icon>
+            <mat-icon matSuffix (click)="onEdit(car)">mode_edit</mat-icon>
         </div>
         <mat-divider></mat-divider>
 
         <div *ngIf="editState && carToEdit.id == car.id">
-            {{ car.brand }}
-            <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="carForm" (ngSubmit)="updateCar(carToEdit)">
 				<mat-form-field class="full-width">
-					<mat-label>Brand</mat-label>
-                    <input matInput value="{{car.brand}}" 
-                    formControlName="brand"
+					<input matInput value="{{carToEdit.brand}}" 
+                        formControlName="brand"
+                        placeholder="Car brand"
+                        value="Update Car"
                     />
-                    <button type="button" mat-flat-button color="primary" (click)="onUpdate()">Update</button>
+                    <button type="submit" mat-flat-button color="primary">Update</button>
+                    <button type="button" mat-flat-button color="warn" (click)="deleteCar(carToEdit)">Delete</button>
 				</mat-form-field>
 			</form>
         </div>
-            
     </mat-list>
-  </mat-list>
-
 </div>
