@@ -1,0 +1,59 @@
+<div *ngIf="authService.user$ | async as user; else login">
+    <div class="social-logout">
+        <h4>You can now administer this site.</h4>
+        <h5>Don't forget to logout when closin this app.</h5>
+        <button mat-raised-button color="primary" (click)="onLogout()">Sign Out</button>
+        <div>
+            <app-car></app-car>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #login>
+    <div class="social-login">
+        <mat-card>
+            <mat-card-title>Login</mat-card-title>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="fill">
+                    <mat-label>Enter your name</mat-label>
+                    <input matInput 
+                           placeholder="Your name" 
+                           formControlName="displayName"
+                           autocomplete="displayName">
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput 
+                           placeholder="you@example.com" 
+                           formControlName="email"
+                           autocomplete="email">
+                    <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>
+                </mat-form-field>
+        
+                <mat-form-field appearance="fill">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput 
+                           [type]="hide ? 'password' : 'text'" 
+                           formControlName="password"
+                           autocomplete="current-password">
+                    <mat-error *ngIf="password.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+                    <button mat-icon-button matSuffix 
+                            (click)="hide = !hide" 
+                            [attr.aria-label]="'Hide password'" 
+                            [attr.aria-pressed]="hide">
+                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    </button>
+                </mat-form-field>
+        
+                <button mat-raised-button 
+                        color="primary"
+                        class="login-btn"
+                        type="submit"
+                        [disabled]="loginForm.invalid">Login
+                </button>
+            </form>
+        </mat-card>
+    </div>
+</ng-template>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "gus-login": {
+      "hosting": {
+        "gus-login": [
+          "gus-login"
+        ]
+      }
+    }
+  }
+}

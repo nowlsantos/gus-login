@@ -1,0 +1,60 @@
+.social-logout {
+    height: 90vh;
+    text-align: center;
+    margin: 50px;
+}
+
+.social-login {
+    height: 90vh;
+    text-align: center;
+}
+
+.facebook {
+    background-color: dodgerblue;
+    margin: 0 50px;
+    color: white;
+}
+
+.google {
+    background-color: orangered;
+    margin: 20px 50px;
+    width: 133px;   
+    color: white;
+}
+
+.mat-card>:first-child, 
+.mat-card-content>:first-child {
+    margin-top: 0;
+    text-align: left;
+}
+
+h2 {
+    font-weight: bold;
+    color: black;
+}
+
+h4 h5 {
+    text-align: center;
+}
+
+.mat-card {
+    width: 300px;
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute; */
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.login-btn {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+}
